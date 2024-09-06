@@ -1,0 +1,89 @@
+/* Logo Styling */
+.logo-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    font-family: Georgia, sans-serif;
+    font-weight: bold;
+    font-size: 1.5em;
+    color: white;
+    margin-left: 10px;
+    text-decoration: none;
+  }
+  
+  .icon img {
+    width: 40px;
+    height: auto;
+  }
+  
+  /* Navbar Styling */
+  nav {
+    background-color: #000080;
+    width: 100%; /* Updated to prevent horizontal scrolling */
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden; /* Ensure no overflow */
+  }
+  
+  /* Navigation Links */
+  nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+  }
+  
+  ul li i {
+    margin-right: 20px;
+    color: white;
+  }
+  
+  ul li i:hover{
+    color:  cyan;
+  }
+
+  /* Hamburger Icon */
+  .hamburger-icon {
+    display: none;
+    font-size: 1.5em;
+    color: white;
+    cursor: pointer;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    /* Hide menu on small screens */
+    .nav-right ul {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background: #fff;
+      width: 200px;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    }
+  
+    /* Display menu when hamburger is clicked */
+    .nav-right ul.open {
+      display: flex;
+    }
+  
+    /* Show hamburger icon on small screens */
+    .hamburger-icon {
+      display: block;
+      margin-right: 20px;
+    }
+  }
+  
+  /* Ensure no extra margin/padding */
+  body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+  
