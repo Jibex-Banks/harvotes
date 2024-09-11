@@ -21,6 +21,8 @@
   /* Navbar Styling */
   nav {
     background-color: #000080;
+    /* background-color: #007BFF; */
+    padding: 1em;
     width: 100%; /* Updated to prevent horizontal scrolling */
     height: 50px;
     display: flex;

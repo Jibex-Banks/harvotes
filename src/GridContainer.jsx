@@ -5,9 +5,6 @@ import './GridContainer.css';
 const GridContainer = () => {
     return (
         <>
-       <div>
-       
-       </div>
         <div className="welcome item">
             <h2>Welcome to our shop!</h2>
         </div>

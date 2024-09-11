@@ -1,80 +1,100 @@
-require('dotenv').config();
 const express = require('express');
 const sql = require('mssql');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const cors = require('cors');
 
 const app = express();
-const port = process.env.PORT || 5173;
 
-// Middleware
-app.use(express.json());
-
-// Database configuration
-const dbConfig = {
-  user: 'your_db_user',
-  password: 'your_db_password',
-  server: 'JIBEX-BANKS', // Without the instance name
-  database: 'your_db_name',
-  options: {
-    instanceName: 'SQLEXPRESS', // Add instance name here
-    encrypt: true,              // Or set to false depending on your setup
-    connectTimeout: 30000,       // Optional: Increase connection timeout
-  },
+// CORS configuration
+const corsOptions = {
+  origin: 'http://localhost:5173', // Replace with your frontend URL
+  optionsSuccessStatus: 200
 };
 
-// Connect to the database
-sql.connect(dbConfig)
-  .then(pool => {
-    if (pool.connected) {
-      console.log('Connected to SQL Server');
-    }
-  })
-  .catch(err => {
-    console.error('Database connection failed:', err);
-  });
+app.use(cors(corsOptions));
+app.use(express.json());
 
+const config = {
+  user: 'your-username',
+  password: 'your-password',
+  server: 'your-server-address',
+  database: 'auth_db',
+  options: {
+    encrypt: true,
+    trustServerCertificate: true
+  }
+};
 
-// Define routes
-app.post('/login', async (req, res) => {
-  const { username, password } = req.body;
+let pool;
 
+async function connectToDatabase() {
   try {
-    const pool = await sql.connect(dbConfig);
+    pool = await sql.connect(config);
+    console.log('Connected to database!');
+  } catch (err) {
+    console.error('Error connecting to database:', err);
+    process.exit(1);
+  }
+}
+
+async function createUsersTable() {
+  try {
+    await pool.request().query(`
+      IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='users' AND xtype='U')
+      CREATE TABLE users (
+        id INT IDENTITY(1,1) PRIMARY KEY,
+        username NVARCHAR(100) NOT NULL UNIQUE,
+        email NVARCHAR(100) NOT NULL UNIQUE,
+        password NVARCHAR(255) NOT NULL
+      )
+    `);
+    console.log('Users table created or already exists');
+  } catch (err) {
+    console.error('Error creating users table:', err);
+  }
+}
+
+connectToDatabase();
+
+app.post('/api/login', async (req, res) => {
+  const { username, password } = req.body;
+  try {
     const result = await pool.request()
       .input('username', sql.NVarChar, username)
-      .query('SELECT * FROM Users WHERE Username = @username');
-
+      .query('SELECT * FROM users WHERE username = @username');
+    
+    if (result.recordset.length === 0) {
+      return res.status(401).json({ success: false, message: 'Invalid username or password' });
+    }
+    
     const user = result.recordset[0];
-    if (user && await bcrypt.compare(password, user.Password)) {
-      const token = jwt.sign({ id: user.ID, username: user.Username }, 'your_jwt_secret', { expiresIn: '1h' });
-      res.json({ token });
+    if (user.password === password) {
+      res.json({ success: true, username: user.username });
     } else {
-      res.status(401).json({ message: 'Invalid credentials' });
+      res.status(401).json({ success: false, message: 'Invalid username or password' });
     }
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    console.error('Error in login:', err);
+    res.status(500).json({ success: false, message: 'Error logging in', error: err.message });
   }
 });
 
-app.post('/signup', async (req, res) => {
+app.post('/api/signup', async (req, res) => {
   const { username, email, password } = req.body;
-  const hashedPassword = await bcrypt.hash(password, 10);
-
   try {
-    const pool = await sql.connect(dbConfig);
-    await pool.request()
+    const result = await pool.request()
       .input('username', sql.NVarChar, username)
       .input('email', sql.NVarChar, email)
-      .input('password', sql.NVarChar, hashedPassword)
-      .query('INSERT INTO Users (Username, Email, Password) VALUES (@username, @email, @password)');
-
-    res.status(201).json({ message: 'User created' });
+      .input('password', sql.NVarChar, password)
+      .query('INSERT INTO users (username, email, password) VALUES (@username, @email, @password)');
+    
+    res.json({ success: true });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    console.error('Error in signup:', err);
+    res.status(500).json({ success: false, message: 'Error signing up', error: err.message });
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });

@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import './Navbar.css';
 import Home from './home';
 import Shop from './Shop';
+import Login from './Login';
+import Cart from './Cart';
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -22,10 +24,10 @@ function Navbar() {
         <div className="nav-right">
           <ul className={menuOpen ? "open" : ""}>
             <li>
-              <Link><i className="fa-solid fa-magnifying-glass"></i></Link>
-              <Link to="/shop"><i class="fa-solid fa-shop"></i></Link>
-              <Link><i className="fa-regular fa-user"></i></Link>
-              <Link><i className="fa-solid fa-cart-shopping"></i></Link>
+              <Link to="login"><i className="fa-solid fa-magnifying-glass"></i></Link>
+              <Link to="/shop"><i className="fa-solid fa-shop"></i></Link>
+              <Link to="/account"><i className="fa-regular fa-user"></i></Link>
+              <Link to="/cart"><i className="fa-solid fa-cart-shopping"></i></Link>
             </li>
           </ul>
           <div className="hamburger-icon" onClick={toggleMenu}>
@@ -37,7 +39,8 @@ function Navbar() {
       <Route path="/home" element={<Home/>} />
       <Route path="/" element={<Home />} />
       <Route path="/shop" element={<Shop/>} />
-      {/* <Route path="/account" element={<Account/>} /> */}
+      <Route path="/login" element={<Login/>} />
+      <Route path="/cart" element={<Cart/>} />
       </Routes>
     </div>
   );

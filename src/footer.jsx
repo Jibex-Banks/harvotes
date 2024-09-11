@@ -3,6 +3,8 @@ import React from 'react';
 import './footer.css';
 
 function Footer(){
+  var date  = new Date();
+  var  year  = date.getFullYear();
     return (
         <div>
         <footer>
@@ -50,7 +52,7 @@ function Footer(){
           </div>
         </div>
         <div className="footerBottom">
-          <h5>Copyright &copy; 2024 Hartoves Technology</h5>
+          <h5>Copyright © {year} Hartoves Technology</h5>
         </div>
       </footer>
       </div>
