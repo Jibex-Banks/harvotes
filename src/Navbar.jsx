@@ -1,12 +1,8 @@
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Navbar.css';
-import Home from './home';
-import Shop from './Shop';
-import Login from './Login';
-import Cart from './Cart';
 
-function Navbar() {
+function Navbar({ cartItemCount }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -14,35 +10,29 @@ function Navbar() {
   };
 
   return (
-    <div>
-      <nav>
-        <div className="logo-container">
-          <div className="icon">
-          </div>
-          <Link to="/home" className="logo">Hartoves Technology</Link>
+    <nav>
+      <div className="logo-container">
+        <div className="icon">
         </div>
-        <div className="nav-right">
-          <ul className={menuOpen ? "open" : ""}>
-            <li>
-              <Link to="login"><i className="fa-solid fa-magnifying-glass"></i></Link>
-              <Link to="/shop"><i className="fa-solid fa-shop"></i></Link>
-              <Link to="/account"><i className="fa-regular fa-user"></i></Link>
-              <Link to="/cart"><i className="fa-solid fa-cart-shopping"></i></Link>
-            </li>
-          </ul>
-          <div className="hamburger-icon" onClick={toggleMenu}>
-            <i className={menuOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars"}></i>
-          </div>
+        <Link to="/home" className="logo">Hartoves Technology</Link>
+      </div>
+      <div className="nav-right">
+        <ul className={menuOpen ? "open" : ""}>
+          <li>
+            <Link to="/home"><i className="fa-solid fa-house"></i></Link>
+            <Link to=""><i className="fa-solid fa-magnifying-glass"></i></Link>
+            <Link to="/shop"><i className="fa-solid fa-shop"></i></Link>
+            <Link to="/cart">
+              <i className="fa-solid fa-cart-shopping"></i>
+              {cartItemCount > 0 && <span className="cart-count">{cartItemCount}</span>}
+            </Link>
+          </li>
+        </ul>
+        <div className="hamburger-icon" onClick={toggleMenu}>
+          <i className={menuOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars"}></i>
         </div>
-      </nav>
-      <Routes>
-      <Route path="/home" element={<Home/>} />
-      <Route path="/" element={<Home />} />
-      <Route path="/shop" element={<Shop/>} />
-      <Route path="/login" element={<Login/>} />
-      <Route path="/cart" element={<Cart/>} />
-      </Routes>
-    </div>
+      </div>
+    </nav>
   );
 }
 

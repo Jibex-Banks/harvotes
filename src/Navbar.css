@@ -1,91 +1,111 @@
 /* Logo Styling */
 .logo-container {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  font-family: Georgia, sans-serif;
+  font-weight: bold;
+  font-size: 1.5em;
+  color: white;
+  margin-left: 10px;
+  text-decoration: none;
+}
+
+.icon img {
+  width: 40px;
+  height: auto;
+}
+
+/* Navbar Styling */
+nav {
+  background-color: #000080;
+  padding: 1em;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Navigation Links */
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+ul li i {
+  margin-right: 20px;
+  color: white;
+}
+
+ul li i:hover {
+  color: cyan;
+}
+
+/* Hamburger Icon */
+.hamburger-icon {
+  display: none;
+  font-size: 1.5em;
+  color: white;
+  cursor: pointer;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .logo{
+    font-size: 1em;
+    margin: auto 12px;
   }
-  
-  .logo {
-    font-family: Georgia, sans-serif;
-    font-weight: bold;
-    font-size: 1.5em;
-    color: white;
-    margin-left: 10px;
-    text-decoration: none;
+  nav{
+    padding: 0;
   }
-  
-  .icon img {
-    width: 40px;
-    height: auto;
-  }
-  
-  /* Navbar Styling */
-  nav {
-    background-color: #000080;
-    /* background-color: #007BFF; */
-    padding: 1em;
-    width: 100%; /* Updated to prevent horizontal scrolling */
-    height: 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    overflow: hidden; /* Ensure no overflow */
-  }
-  
-  /* Navigation Links */
-  nav ul {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    margin-right: 20px;
-  }
-  
-  ul li i {
-    margin-right: 20px;
-    color: white;
-  }
-  
-  ul li i:hover{
-    color:  cyan;
+  /* Hide the default menu on smaller screens */
+  .nav-right ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: #fff;
+    width: 250px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    z-index: 100; /* Ensure the menu is on top of other elements */
   }
 
-  /* Hamburger Icon */
+  /* Show menu when hamburger icon is clicked */
+  .nav-right ul.open {
+    display: flex;
+  }
+
+  /* Show the hamburger icon on smaller screens */
   .hamburger-icon {
-    display: none;
-    font-size: 1.5em;
-    color: white;
-    cursor: pointer;
+    display: block;
+    margin-right: 20px;
   }
-  
-  /* Responsive Styles */
-  @media (max-width: 768px) {
-    /* Hide menu on small screens */
-    .nav-right ul {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 60px;
-      right: 20px;
-      background: #fff;
-      width: 200px;
-      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
-    }
-  
-    /* Display menu when hamburger is clicked */
-    .nav-right ul.open {
-      display: flex;
-    }
-  
-    /* Show hamburger icon on small screens */
-    .hamburger-icon {
-      display: block;
-      margin-right: 20px;
-    }
+
+  /* Make the navigation links columnar on smaller screens */
+  ul li {
+    text-align: right;
+    padding: 10px 20px;
   }
-  
-  /* Ensure no extra margin/padding */
-  body, html {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+
+  ul li i {
+    color: #000080;
   }
-  
+
+  ul li i:hover {
+    color: cyan;
+  }
+}
+
+/* Prevent horizontal scrolling */
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}

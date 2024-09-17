@@ -1,73 +1,153 @@
-.shopwelcome{
-    background-color: #77e1c5;
-    display: grid;
-    grid-template-columns: 1fr;
-    height: 300px;
-    margin-bottom: 10px;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+  }
+  
+  .shop-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .shop-header {
     text-align: center;
-    align-content: center;
-    color: cyan;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background-color: #77e1c5;
+    color: #fff;
+    border-radius: 10px;
+  }
+  
+  .shop-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .shop-header p {
+    font-size: 1.2rem;
+    opacity: 0.8;
+  }
+  
+  .shop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .shop-item {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .shop-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .shop-item-image {
+    height: 250px;
     background-size: cover;
     background-position: center;
-    position: relative;
-    font-size: 2em;
-    margin: 12px;
-    border-radius: 30px;
-}
-.shopitem{
-    background-image: url(log.jpg);
-}
-.shop-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 10px;
-    margin: 12px;
-}
-
-.shop-item {
-    position: relative;
-    height: 300px;
-    background-color: #77e1c5;
-    border-radius: 2em;
-    box-shadow: 0 0 0 rgb(0, 0, 0, 0.5);
-}
-.shopitems{
-    height: 200px;
-    margin: 10px;
-    border-radius: 20px;
-    background-size: cover;
-    background-position: center;
-}
-
-.shop-item .cont{
-    text-align: center;
-    font-size: 1.6em;
-    align-self: center;
-}
-
-.shopitem1 {
-    background-image: url('./05-_2t605kJV_FNqm1qkX.avif'); 
-}
-
-.shopitem2 {
-    background-image: url('./EfFkB04OZ9-QNhsqp8IRZ.jpg'); 
-}
-
-.shopitem3 {
-    background-image: url('./8WbXmU7VsgMb1WnGqlIbx.jpg'); 
-}
-
-.shopitem4 {
-    background-image: url('./cOJEiVqnD7GUCwrucoY_V.jpg'); 
-}
-
-/* Mobile View */
-@media screen and (max-width: 768px) {
-    .shop-container {
-        grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .shop-item-content {
+    padding: 1.5rem;
+  }
+  
+  .shop-item-name {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .shop-item-price {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #77e1c5;
+    margin-bottom: 1rem;
+  }
+  
+  .shop-item-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #000080;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .shop-item-button:hover {
+    background-color: #0000b3;
+  }
+  
+  .shop-item-button svg {
+    margin-right: 0.5rem;
+  }
+  
+  /* Responsive styles */
+  @media screen and (max-width: 768px) {
+    .shop-header h1 {
+      font-size: 2rem;
     }
-
-    .shopitem1, .shopitem2, .shopitem3, .shopitem4 {
-        height: 220px; /* Adjust height if necessary */
+  
+    .shop-header p {
+      font-size: 1rem;
     }
-}
+  
+    .shop-grid {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .shop-page {
+      padding: 10px;
+    }
+  
+    .shop-header {
+      padding: 1.5rem;
+    }
+  
+    .shop-header h1 {
+      font-size: 1.8rem;
+    }
+  
+    .shop-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .shop-item-image {
+      height: 180px;
+    }
+  }
+  
+  /* iOS-specific styles */
+  @supports (-webkit-touch-callout: none) {
+    .shop-item-button {
+      padding: 0.9rem;  /* Slightly larger touch target for iOS */
+    }
+  }
+  
+  /* Android-specific styles */
+  @supports not (-webkit-touch-callout: none) {
+    .shop-item-button {
+      -webkit-tap-highlight-color: transparent;
+    }
+  }

@@ -14,7 +14,7 @@
     font-size: 2em;
 }
 .item{
-    background-image: url(log.jpg);
+    background-image: url('./ins_link_C2rT4INoQbQ_1725557209362.jpg'); /* Replace with actual path to your image */
 }
 .grid-container {
     display: grid;
@@ -66,6 +66,7 @@
 .category {
     font-size: 1.5em;
     font-weight: 600;
+    margin-bottom: 5px;
 }
 
 h3 {
@@ -84,6 +85,10 @@ p{
     color: black;
     text-decoration: none;
     border-radius: 20px;
+}
+
+.packages{
+    margin-left: 20px;
 }
 
 /* Mobile View */

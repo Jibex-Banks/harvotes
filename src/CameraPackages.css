@@ -1,0 +1,196 @@
+/* CameraPackages.css */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+  }
+  
+  .modal-content {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 24rem;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  
+  @media (min-width: 640px) {
+    .modal-content {
+      max-width: 36rem;
+      padding: 1.5rem;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .modal-content {
+      max-width: 42rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .modal-content {
+      max-width: 56rem;
+    }
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .modal-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #1a202c;
+  }
+  
+  .close-button {
+    color: #718096;
+    transition: color 0.2s;
+  }
+  
+  .close-button:hover {
+    color: #4a5568;
+  }
+  
+  .package-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .package-button {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    border-radius: 9999px;
+    background-color: #e2e8f0;
+    color: #4a5568;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  
+  .package-button:hover {
+    background-color: #cbd5e0;
+  }
+  
+  .package-button.active {
+    background-color: #3b82f6;
+    color: white;
+  }
+  
+  .package-tiers {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .package-tier {
+    background-color: #f7fafc;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  }
+  
+  .tier-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    text-transform: capitalize;
+  }
+  
+  .tier-items {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 1rem 0;
+  }
+  
+  .tier-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .item-bullet {
+    color: #3b82f6;
+    margin-right: 0.5rem;
+  }
+  
+  .tier-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .tier-price {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #3b82f6;
+  }
+  
+  .add-to-cart-button {
+    display: flex;
+    align-items: center;
+    background-color: #10b981;
+    color: white;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    transition: background-color 0.2s;
+  }
+  
+  .add-to-cart-button:hover {
+    background-color: #059669;
+  }
+  
+  .add-to-cart-button svg {
+    margin-right: 0.5rem;
+  }
+  
+  .modal-footer {
+    background-color: #f7fafc;
+    padding: 0.75rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #4a5568;
+  }
+  
+  @media (min-width: 640px) {
+    .modal-footer {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+      font-size: 0.875rem;
+    }
+  }
+  
+  .contact-info {
+    margin-bottom: 0.5rem;
+  }
+  
+  @media (min-width: 640px) {
+    .contact-info {
+      margin-bottom: 0;
+    }
+  }
+  
+  .instagram-link {
+    color: #3b82f6;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  
+  .instagram-link:hover {
+    color: #2563eb;
+  }

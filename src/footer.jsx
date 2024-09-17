@@ -5,6 +5,7 @@ import './footer.css';
 function Footer(){
   var date  = new Date();
   var  year  = date.getFullYear();
+  const phone= +2349061573526;
     return (
         <div>
         <footer>
@@ -37,7 +38,7 @@ function Footer(){
         <a href="mailto:hartovestechnology@gmail.com">hartovestechnology@gmail.com</a>
     </p>
     <p>
-        <a href="tel:+2349061573526">+234 906 157 3526</a>
+        <a href={`tel:${phone}`}>+234 906 157 3526</a>
     </p>
 </div>
 
