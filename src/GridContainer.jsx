@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import './GridContainer.css';
-import CameraPackages from './CameraPackages'; // Make sure this path is correct
+import CameraPackages from './CameraPackages'; 
 
 const GridContainer = () => {
     const [showPackages, setShowPackages] = useState(false);
 
     const handleAddToCart = (packageName, tier, price) => {
-        // Implement your add to cart logic here
+        
         console.log(`Added to cart: ${packageName} - ${tier} - $${price}`);
-        // You might want to update a cart state or send this to a parent component
+       
     };
 
     return (
